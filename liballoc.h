@@ -1,7 +1,9 @@
 #ifndef _LIBALLOC_H
 #define _LIBALLOC_H
 
+#include <inttypes.h>
 
+#define	_HAVE_SIZE_T
 
 // If we are told to not define our own size_t, then we
 // skip the define.
