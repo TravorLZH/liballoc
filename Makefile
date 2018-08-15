@@ -3,7 +3,7 @@
 
 # --------- FLAGS AND VARIABLES --------------------
 
-CFLAGS=-O2 -nostdlib -nodefaultlibs -fno-builtin -fPIC -Wall 
+CFLAGS=-m32 -ffreestanding
 HEADERPATH=-I./
 
 
@@ -11,7 +11,7 @@ HEADERPATH=-I./
 # ---------  GENERIC MAKE RULES --------------------
 
 all: 
-	@echo "Makefile for the liballoc library."
+	@echo "Makefile for the liballoc libr$(AR)y."
 	@echo "Please see LICENSE for licensing information."
 	@echo 
 	@echo "Output should be: liballoc.a "
@@ -34,21 +34,23 @@ clean:
 	rm -f ./*.so
 
 compile:
-	gcc $(HEADERPATH) $(CFLAGS) -static -c liballoc.c
-	ar -rcv liballoc.a  *.o
-	gcc $(HEADERPATH) $(CFLAGS) -shared liballoc.c -o liballoc.so
+	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c
+	$(AR) -rcv liballoc.a  *.o
+	$(CC) $(HEADERPATH) $(CFLAGS) -shared liballoc.c -o liballoc.so
 
 
 linux:
-	gcc $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
-	ar -rcv liballoc.a  *.o
-	gcc $(HEADERPATH) $(CFLAGS) -shared liballoc.c linux.c -o liballoc.so
+	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
+	$(AR) -rcv liballoc.a  *.o
+	$(CC) $(HEADERPATH) $(CFLAGS) -shared liballoc.c linux.c -o liballoc.so
 
 
 linux_debug:
-	gcc -DDEBUG $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
-	ar -rcv liballoc.a  *.o
-	gcc -DDEBUG $(HEADERPATH) $(CFLAGS) -shared liballoc.c linux.c -o liballoc.so
+	$(CC) -DDEBUG $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
+	$(AR) -rcv liballoc.a  *.o
+	$(CC) -DDEBUG $(HEADERPATH) $(CFLAGS) -shared liballoc.c linux.c -o liballoc.so
 
-
+foos:
+	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c foos.c
+	$(AR) -rcv liballoc.a *.o
 
