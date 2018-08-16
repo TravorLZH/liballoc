@@ -50,7 +50,7 @@ linux_debug:
 	$(AR) -rcv liballoc.a  *.o
 	$(CC) -DDEBUG $(HEADERPATH) $(CFLAGS) -shared liballoc.c linux.c -o liballoc.so
 
-foos:
+liballoc.a:	liballoc.c foos.c
 	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c foos.c
 	$(AR) -rcv liballoc.a *.o
 
