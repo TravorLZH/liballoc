@@ -33,11 +33,10 @@ clean:
 	rm -f ./*.a
 	rm -f ./*.so
 
-compile:
+compile:	liballoc.a
+liballoc.a:	liballoc.c liballoc.h
 	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c
 	$(AR) -rcv liballoc.a  *.o
-	$(CC) $(HEADERPATH) $(CFLAGS) -shared liballoc.c -o liballoc.so
-
 
 linux:
 	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
@@ -49,8 +48,3 @@ linux_debug:
 	$(CC) -DDEBUG $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
 	$(AR) -rcv liballoc.a  *.o
 	$(CC) -DDEBUG $(HEADERPATH) $(CFLAGS) -shared liballoc.c linux.c -o liballoc.so
-
-liballoc.a:	liballoc.c foos.c
-	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c foos.c
-	$(AR) -rcv liballoc.a *.o
-

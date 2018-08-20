@@ -1,17 +1,13 @@
 #ifndef _LIBALLOC_H
 #define _LIBALLOC_H
 
-#include <inttypes.h>
-
-#define	_HAVE_SIZE_T
-
 // If we are told to not define our own size_t, then we
 // skip the define.
 #ifndef _ALLOC_SKIP_DEFINE
 
 #ifndef _HAVE_SIZE_T
 #define _HAVE_SIZE_T
-typedef	unsigned int	size_t;
+typedef	unsigned long	size_t;
 #endif
 
 
