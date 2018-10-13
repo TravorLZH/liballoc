@@ -34,9 +34,13 @@ clean:
 	rm -f ./*.so
 
 compile:	liballoc.a
+
 liballoc.a:	liballoc.c liballoc.h
 	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c
 	$(AR) -rcv liballoc.a  *.o
+
+install:
+	install -c liballoc.a $(DEST)/lib
 
 linux:
 	$(CC) $(HEADERPATH) $(CFLAGS) -static -c liballoc.c linux.c
